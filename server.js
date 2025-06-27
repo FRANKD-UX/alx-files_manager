@@ -1,18 +1,16 @@
-// server.js
+// server.js (updated)
 import express from 'express';
-import routes from './routes/index.js';
+import router from './routes/index'; // Removed .js extension
 
 const app = express();
 const port = process.env.PORT || 5000;
+const host = '0.0.0.0';
 
-// Middleware
 app.use(express.json());
+app.use('/', router);
 
-// Routes
-app.use('/', routes);
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(port, host, () => {
+  console.log(`Server running on ${host}:${port}`);
 });
 
 export default app;
